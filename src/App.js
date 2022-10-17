@@ -1,13 +1,19 @@
 import './App.scss';
-import { BASE_URL } from './constants';
+import AppLayout from './components/AppLayout';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 function App() {
   
   return (
-    <div className="App">
-      <h1>Welcome-TODO</h1>
-      <h2>{BASE_URL ? BASE_URL : 'Not set'}</h2>
-    </div>
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={ <AppLayout /> }>
+              <Route index element={ <div>Home</div> }></Route>
+              <Route path="route-1" element={ <div>Route 1</div> }></Route>
+              <Route path="route-2" element={ <div>Route 2</div> }></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
   );
 }
 
