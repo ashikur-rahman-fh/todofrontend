@@ -1,3 +1,3 @@
-const domain = process.env.REACT_APP_BACKEND_DOMAIN;
+export const domain = process.env.REACT_APP_BACKEND_DOMAIN;
 
-const BASE_URL = domain ? domain : 'localhost:3001';
+export const BASE_URL = domain ? domain : 'localhost:3001/';

@@ -1,12 +1,12 @@
 import './App.css';
+import { BASE_URL } from './constants';
 
 function App() {
-  const domain = process.env.REACT_APP_BACKEND_DOMAIN;
   
   return (
     <div className="App">
       <h1>Welcome-TODO</h1>
-      <h2>{domain ? domain : 'Not set'}</h2>
+      <h2>{BASE_URL ? BASE_URL : 'Not set'}</h2>
     </div>
   );
 }
