@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { BASE_URL } from './constants';
 
 function App() {
