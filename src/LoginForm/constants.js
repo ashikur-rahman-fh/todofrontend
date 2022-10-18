@@ -4,11 +4,15 @@ export const FIELDS = {
         id: 'username',
         type: 'text',
         autoFocus: true,
+        validation: new RegExp('.'),
+        validationMessage: 'Username can not be empty',
     },
     password: {
         label: 'Password',
         id: 'password',
         type: 'password',
+        validation: new RegExp('.'),
+        validationMessage: 'Password can not be empty',
     },
 };
 

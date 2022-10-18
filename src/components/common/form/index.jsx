@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
@@ -6,17 +6,34 @@ import "./style.scss";
 
 const Form = (props) => {
     const { title, fields, onSubmit, submitButtonText, footerOption, redirectRoute } = props;
-
     const [formData, setFormData] = useState(null);
+
+    const invalidForm = useMemo(() => {
+        for (let fieldKey in fields) {
+            const currentValue = formData?.[fields[fieldKey].id] ? formData[fields[fieldKey].id] : "";
+            const validationExp = fields[fieldKey]?.validation;
+
+            if (validationExp && !validationExp.test(currentValue)) {
+                return true;
+            }
+        }
+
+        return false;
+    }, [formData, fields]);
 
     const handleFormDataChange = (event) => {
         setFormData((previousData) => {
             return {...previousData, [event.target.name]: event.target.value};
-        })
+        });
     };
 
     const renderFields = () => {
         return Object.keys(fields).map((fieldKey) => {
+            const currentValue = formData?.[fields[fieldKey].id] ? formData[fields[fieldKey].id] : "";
+
+            const validationExp = fields[fieldKey]?.validation;
+            let invalid = validationExp && !validationExp.test(currentValue) ? true : false;
+
             return (
                 <tr key={fieldKey}>
                     <td>
@@ -28,10 +45,13 @@ const Form = (props) => {
                             id={fields[fieldKey].id}
                             name={fields[fieldKey].id}
                             type={fields[fieldKey].type}
-                            value={formData?.[fields[fieldKey].id] ? formData[fields[fieldKey].id] : ""}
+                            value={currentValue}
                             onChange={handleFormDataChange}
                         >
                         </input>
+                    </td>
+                    <td className="error-container">
+                        {invalid && <p className={`error-message ${invalid ? `error` : ``}`}>{fields[fieldKey]?.validationMessage}</p>}
                     </td>
                 </tr>
             );
@@ -57,14 +77,16 @@ const Form = (props) => {
 
                 <div className="form-footer">
                     {footerOption}
-                    <Link
-                        className="submit-button"
-                        type="button"
-                        onClick={handleSubmitButtonClick}
-                        to={redirectRoute}
-                    >
-                        {submitButtonText}
-                    </Link>
+                    <span className={`submit-button-container ${invalidForm ? 'button-container-disabled' : ''}`}>
+                        <Link
+                            className={`submit-button ${invalidForm ? 'disabled' : ''}`}
+                            type="button"
+                            onClick={handleSubmitButtonClick}
+                            to={redirectRoute}
+                        >
+                            {submitButtonText}
+                        </Link>
+                    </span>
                 </div>
             </div>
         </form>

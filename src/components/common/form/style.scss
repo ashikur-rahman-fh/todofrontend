@@ -10,7 +10,7 @@
     .form-cotainer {
         border-radius: 8px;
         border: 1px solid $secondary-color-light;
-        padding: 50px 20px;
+        padding: 50px 20px 50px 40px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -26,6 +26,22 @@
                 border-radius: 4px;
                 width: 260px;
                 height: 32px;
+            }
+
+            .error-container {
+                width: 100px;
+                max-height: 10px;
+                position: relative;
+                top: -18px;
+                display: inline-block;
+            }
+
+            .error {
+                color: $error-color;
+            }
+            .error-message {
+                font-size: 11px;
+                padding: 0px 2px;
             }
         }
     }
@@ -56,6 +72,16 @@
 
         .submit-button:hover {
             background-color: $primary-color;
+        }
+
+        .button-container-disabled {
+            cursor: not-allowed;
+        }
+
+        .disabled {
+            pointer-events: none;
+            color: gray;
+            background-color: rgb(218, 218, 218);
         }
     }
 }
