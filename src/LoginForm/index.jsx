@@ -1,67 +1,42 @@
-import React, { useState } from "react";
-import PropTypes from 'prop-types';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { FIELDS } from "./constants";
+import Form from "../components/common/form";
+
+import { FIELDS, REGISTRATION_TEXT } from "./constants";
+import { REGISTRATION_ROUTE } from "../constants";
+
 import "./style.scss";
 const LoginForm = (props) => {
-    const { submitButtonText } = props;
-    const [formData, setFormData] = useState(null);
 
-    const handleInputValueChange = (event) => {
-        setFormData((previousData) => {
-            return {...previousData, [event.target.name]: event.target.value};
-        });
-    };
-
-    const renderFields = () => {
-        return Object.keys(FIELDS).map((fieldKey) => {
-            return (
-                <tr className="table-row" key={fieldKey}>
-                    <td>
-                        <label htmlFor={FIELDS[fieldKey].id}>{FIELDS[fieldKey].label}</label>
-                    </td>
-                    <td>
-                        <input
-                            name={FIELDS[fieldKey].id}
-                            autoFocus={FIELDS[fieldKey].autoFocus}
-                            id={FIELDS[fieldKey].id}
-                            type={FIELDS[fieldKey].type}
-                            value={formData?.[FIELDS[fieldKey].id] ? formData[FIELDS[fieldKey].id] : ''}
-                            onChange={handleInputValueChange}
-                        />
-                    </td>
-                </tr>
-            )
-        });
+    const handleLoginClick = (data) => {
+        console.log(data);
     }
 
-    const handleLoginClick = (event) => {
-        console.log(formData);
+    const FooterOption = <Link className="registration-link" to={REGISTRATION_ROUTE}>{REGISTRATION_TEXT}</Link>
+
+    const title = () => {
+        return (
+            <div className="title">
+                <div className="instruction">Sign in</div>
+                <div className="result">To manage your tasks</div>
+            </div>
+        );
     }
 
     return (
-        <form className="login-form">
-            <table className="login-form-container">
-                <tbody>
-                    {renderFields()}
-                </tbody>
-            </table>
-            <input
-                className="submit-button"
-                type="button"
-                value={submitButtonText}
-                onClick={handleLoginClick}
-            />
-        </form>
+        <Form
+            title={title()}
+            fields={FIELDS}
+            onSubmit={handleLoginClick}
+            submitButtonText="Enter"
+            footerOption={FooterOption}
+        />
     );
 };
 
-LoginForm.defaultProps = {
-    submitButtonText: 'Enter',
-}
+LoginForm.defaultProps = {}
 
-LoginForm.propTypes = {
-    submitButtonText: PropTypes.string,
-};
+LoginForm.propTypes = {};
 
 export default LoginForm;
