@@ -13,3 +13,8 @@ export const FIELDS = {
 };
 
 export const REGISTRATION_TEXT = "Create account";
+
+export const LOGIN_REQUEST_CONFIG = {
+    url: 'auth/login/',
+    method: 'POST',
+}

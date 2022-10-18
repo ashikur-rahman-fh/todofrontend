@@ -7,10 +7,8 @@ import "./style.scss";
 
 
 const RegistrationForm = (props) => {
-    console.log(requestHelper.headers);
-
     const sendRegirationRequest = async (payload) => {
-        const { data, statusText } = await requestHelper.makeRequest(REGISTRATION_REQUEST_CONFIG.url, REGISTRATION_REQUEST_CONFIG.method, {
+        await requestHelper.makeRequest(REGISTRATION_REQUEST_CONFIG.url, REGISTRATION_REQUEST_CONFIG.method, {
             username: payload.username,
             password: payload.password,
             email: payload.email,

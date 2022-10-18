@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../constants";
 
 export class RequestHelper {
     constructor() {
@@ -9,7 +10,7 @@ export class RequestHelper {
 
     makeRequest = async (url, method, data) => {
         const response = await axios({
-            url: url,
+            url: `${BASE_URL}${url}`,
             method: method,
             data: data,
 

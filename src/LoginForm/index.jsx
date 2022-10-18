@@ -1,16 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { requestHelper } from "../utility/helper";
 import Form from "../components/common/form";
 
-import { FIELDS, REGISTRATION_TEXT } from "./constants";
+import { FIELDS, REGISTRATION_TEXT, LOGIN_REQUEST_CONFIG } from "./constants";
 import { REGISTRATION_ROUTE } from "../constants";
 
 import "./style.scss";
 const LoginForm = (props) => {
 
-    const handleLoginClick = (data) => {
-        console.log(data);
+    const sendLoginRequest = async (payload) => {
+        const response = await requestHelper.makeRequest(LOGIN_REQUEST_CONFIG.url, LOGIN_REQUEST_CONFIG.method, {
+            username: payload.username,
+            password: payload.password,
+        });
+
+        return response;
+    };
+
+    const handleLoginClick = async (payload) => {
+        const { data, status } = await sendLoginRequest(payload);
+
+        if (status === 200) {
+            window.sessionStorage.setItem('auth-token', data.token);
+        }
     }
 
     const FooterOption = <Link className="registration-link" to={REGISTRATION_ROUTE}>{REGISTRATION_TEXT}</Link>
