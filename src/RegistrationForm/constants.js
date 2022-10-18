@@ -1,3 +1,5 @@
+import { BASE_URL } from "../constants";
+
 export const FIELDS = {
     username: {
         label: 'Username',
@@ -20,4 +22,9 @@ export const FIELDS = {
         id: 'password2',
         type: 'password',
     }
+};
+
+export const REGISTRATION_REQUEST_CONFIG = {
+    url: `${BASE_URL}auth/register/`,
+    method: 'POST',
 };

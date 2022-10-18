@@ -1,15 +1,24 @@
 import React from "react";
-
 import Form from "../components/common/form";
+import { requestHelper } from "../utility/helper";
 
-import { FIELDS } from "./constants";
+import { FIELDS, REGISTRATION_REQUEST_CONFIG } from "./constants";
 import "./style.scss";
 
 
 const RegistrationForm = (props) => {
+    console.log(requestHelper.headers);
 
-    const handleLoginClick = (data) => {
-        console.log(data);
+    const sendRegirationRequest = async (payload) => {
+        const { data, statusText } = await requestHelper.makeRequest(REGISTRATION_REQUEST_CONFIG.url, REGISTRATION_REQUEST_CONFIG.method, {
+            username: payload.username,
+            password: payload.password,
+            email: payload.email,
+        });
+    };
+
+    const handleRegisterClick = (data) => {
+        sendRegirationRequest(data)
     }
 
     const title = () => {
@@ -24,7 +33,7 @@ const RegistrationForm = (props) => {
         <Form
             title={title()}
             fields={FIELDS}
-            onSubmit={handleLoginClick}
+            onSubmit={handleRegisterClick}
             submitButtonText="Register"
         />
     );
