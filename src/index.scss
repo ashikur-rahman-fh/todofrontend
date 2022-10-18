@@ -1,3 +1,19 @@
+/*
+font-family: 'Bungee Inline', cursive;
+font-family: 'Cabin Sketch', cursive;
+font-family: 'Monoton', cursive;
+font-family: 'Noto Serif', serif;
+font-family: 'Rubik Maze', cursive;
+font-family: 'Sacramento', cursive;
+font-family: 'Sofia', cursive;
+font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Space Grotesk', sans-serif;
+*/
+
 *, *::after, *::before {
   box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Serif', serif;
 }

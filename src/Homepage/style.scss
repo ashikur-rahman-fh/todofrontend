@@ -1,0 +1,17 @@
+
+.homepage {
+    .welcome-message {
+        font-family: 'Cabin Sketch', cursive;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .welcome-text {
+            font-size: 64px;
+        }
+
+        .what-todo-text {
+            font-size: 32px;
+        }
+    }
+}
