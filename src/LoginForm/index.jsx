@@ -9,7 +9,7 @@ import { REGISTRATION_ROUTE, USER_INFO_REQUST_CONFIG } from "../constants";
 
 import "./style.scss";
 const LoginForm = (props) => {
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
 
     const sendLoginRequest = async (payload) => {
         const response = await requestHelper.makeRequest(LOGIN_REQUEST_CONFIG.url, LOGIN_REQUEST_CONFIG.method, {

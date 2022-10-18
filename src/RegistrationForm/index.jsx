@@ -12,6 +12,7 @@ const RegistrationForm = (props) => {
             username: payload.username,
             password: payload.password,
             email: payload.email,
+            name: payload.name,
         });
     };
 

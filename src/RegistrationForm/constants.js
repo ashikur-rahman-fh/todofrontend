@@ -5,6 +5,11 @@ export const FIELDS = {
         type: 'text',
         autoFocus: true,
     },
+    name: {
+        label: 'Full Name',
+        id: 'name',
+        type: 'text',
+    },
     email: {
         label: 'Email',
         id: 'email',
