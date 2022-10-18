@@ -8,7 +8,7 @@ export class RequestHelper {
         }
     }
 
-    makeRequest = async (url, method, data) => {
+    makeRequest = async (url, method, data, headers = undefined) => {
         const response = await axios({
             url: `${BASE_URL}${url}`,
             method: method,
@@ -16,6 +16,7 @@ export class RequestHelper {
 
             headers: {
                 ...this.headers,
+                ...headers,
             }
         });
 
