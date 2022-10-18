@@ -1,0 +1,13 @@
+@import "../../assets/style/base";
+
+footer {
+    .footer-seperator {
+        width: 100%;
+        border-top: 1px solid $secondary-color-light;
+    }
+
+    .footer-content-container {
+        text-align: center;
+        font-size: 13px;
+    }
+}

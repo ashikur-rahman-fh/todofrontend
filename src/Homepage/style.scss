@@ -5,12 +5,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
 
         .welcome-text {
             font-size: 64px;
         }
 
         .what-todo-text {
+            text-align: center;
             font-size: 32px;
         }
     }

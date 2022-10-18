@@ -1,0 +1,20 @@
+@import "../../assets/style/base";
+
+.nav-bar-container {
+    .menu-container {
+        li {
+            list-style: none;
+            text-transform: uppercase;
+
+            a {
+                text-decoration: none;
+                font-weight: 700;
+                font-size: large;
+                color: $secondary-color;
+            }
+            a:visited {
+                color: $secondary-color;
+            }
+        }
+    }
+}
