@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import "./style.scss";
 
 const Form = (props) => {
-    const { title, fields, onSubmit, submitButtonText, footerOption, redirectRoute } = props;
+    const { title, fields, onSubmit, submitButtonText, footerOption } = props;
     const [formData, setFormData] = useState(null);
 
     const invalidForm = useMemo(() => {
@@ -82,7 +82,6 @@ const Form = (props) => {
                             className={`submit-button ${invalidForm ? 'disabled' : ''}`}
                             type="button"
                             onClick={handleSubmitButtonClick}
-                            to={redirectRoute}
                         >
                             {submitButtonText}
                         </Link>

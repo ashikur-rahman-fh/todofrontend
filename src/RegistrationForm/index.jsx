@@ -1,23 +1,37 @@
 import React from "react";
 import Form from "../components/common/form";
-import { requestHelper } from "../utility/helper";
+import { errorMessage, requestHelper } from "../utility/helper";
+import { useNavigate } from "react-router-dom";
 
-import { FIELDS, REGISTRATION_REQUEST_CONFIG } from "./constants";
+
+import { FIELDS, REGISTRATION_REQUEST_CONFIG, MESSAGE } from "./constants";
+import { successMessage } from "../utility/helper";
+import { REGISTRATION_ROUTE, HOME_ROUTE } from "../constants";
+
 import "./style.scss";
 
-
 const RegistrationForm = (props) => {
+    const navigate = useNavigate();
+
     const sendRegirationRequest = async (payload) => {
-        await requestHelper.makeRequest(REGISTRATION_REQUEST_CONFIG.url, REGISTRATION_REQUEST_CONFIG.method, {
+        const response = await requestHelper.makeRequest(REGISTRATION_REQUEST_CONFIG.url, REGISTRATION_REQUEST_CONFIG.method, {
             username: payload.username,
             password: payload.password,
             email: payload.email,
             name: payload.name,
         });
+
+        if (response.status === 200 || response.status === 201) {
+            successMessage(MESSAGE.REGISRATION.SUCCESS);
+            navigate(HOME_ROUTE);
+        } else {
+            errorMessage(MESSAGE.REGISRATION.ERROR);
+            navigate(REGISTRATION_ROUTE);
+        }
     };
 
     const handleRegisterClick = (data) => {
-        sendRegirationRequest(data)
+        sendRegirationRequest(data);
     }
 
     const title = () => {

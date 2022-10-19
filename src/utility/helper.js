@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../constants";
+import { toast } from 'react-toastify';
 
 export class RequestHelper {
     constructor() {
@@ -9,19 +10,34 @@ export class RequestHelper {
     }
 
     makeRequest = async (url, method, data, headers = undefined) => {
-        const response = await axios({
-            url: `${BASE_URL}${url}`,
-            method: method,
-            data: data,
+        let response = null;
+        try {
+            response = await axios({
+                url: `${BASE_URL}${url}`,
+                method: method,
+                data: data,
 
-            headers: {
-                ...this.headers,
-                ...headers,
-            }
-        });
+                headers: {
+                    ...this.headers,
+                    ...headers,
+                }
+            });
+        } catch (error) {}
 
-        return { data: response.data, status: response.status, statusText: response.statusText };
+        return { data: response?.data, status: response?.status, statusText: response?.statusText };
     }
 };
 
 export const requestHelper = new RequestHelper();
+
+export const successMessage = (message) => {
+      toast.success(message, {});
+};
+
+export const errorMessage = (message) => {
+    toast.error(message, {});
+}
+
+export const warningMessage = (message) => {
+    toast.warning(message, {});
+}

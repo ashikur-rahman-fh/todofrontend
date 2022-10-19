@@ -41,3 +41,11 @@ export const REGISTRATION_REQUEST_CONFIG = {
     url: `auth/register/`,
     method: 'POST',
 };
+
+export const MESSAGE = {
+    REGISRATION: {
+        SUCCESS: "Registration successful! Please log in to continue!",
+        ERROR: "Registration falied. Please try again.",
+    },
+};
+

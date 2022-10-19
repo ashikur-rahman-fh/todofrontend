@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { requestHelper } from "../utility/helper";
 import Form from "../components/common/form";
 import { UserContext } from "../context";
+import { successMessage, errorMessage } from "../utility/helper";
 
-import { FIELDS, REGISTRATION_TEXT, LOGIN_REQUEST_CONFIG } from "./constants";
+import { FIELDS, REGISTRATION_TEXT, LOGIN_REQUEST_CONFIG, MESSAGE } from "./constants";
 import { REGISTRATION_ROUTE, USER_INFO_REQUST_CONFIG } from "../constants";
 
 import "./style.scss";
@@ -28,6 +29,10 @@ const LoginForm = (props) => {
 
             const response = await requestHelper.makeRequest(USER_INFO_REQUST_CONFIG.url, USER_INFO_REQUST_CONFIG.method, null, { 'auth-token': data.token });
             setUser(response.data.user);
+
+            successMessage(MESSAGE.LOGIN.SUCCESS)
+        } else {
+            errorMessage(MESSAGE.LOGIN.ERROR);
         }
     }
 
