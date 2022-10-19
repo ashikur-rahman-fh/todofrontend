@@ -10,7 +10,7 @@
     .form-cotainer {
         border-radius: 8px;
         border: 1px solid $secondary-color-light;
-        padding: 50px 20px 50px 40px;
+        padding: 50px 80px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -20,29 +20,6 @@
         .form-body {
             border-collapse: separate; 
             border-spacing: 16px;
-
-            input {
-                font-size: 15px;
-                border-radius: 4px;
-                width: 260px;
-                height: 32px;
-            }
-
-            .error-container {
-                width: 100px;
-                max-height: 10px;
-                position: relative;
-                top: -18px;
-                display: inline-block;
-            }
-
-            .error {
-                color: $error-color;
-            }
-            .error-message {
-                font-size: 11px;
-                padding: 0px 2px;
-            }
         }
     }
 

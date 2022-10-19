@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
@@ -34,24 +35,23 @@ const Form = (props) => {
             const validationExp = fields[fieldKey]?.validation;
             let invalid = validationExp && !validationExp.test(currentValue) ? true : false;
 
+            const showError = currentValue && invalid;
+
             return (
                 <tr key={fieldKey}>
                     <td>
-                        <label htmlFor={fields[fieldKey].id}>{fields[fieldKey].label}</label>
-                    </td>
-                    <td>
-                        <input
-                            autoFocus={fields[fieldKey].autoFocus}
+                        <TextField
+                            size="small"
+                            error={showError}
+                            label={fields[fieldKey].label}
+                            variant="outlined"
                             id={fields[fieldKey].id}
                             name={fields[fieldKey].id}
-                            type={fields[fieldKey].type}
                             value={currentValue}
                             onChange={handleFormDataChange}
-                        >
-                        </input>
-                    </td>
-                    <td className="error-container">
-                        {invalid && <p className={`error-message ${invalid ? `error` : ``}`}>{fields[fieldKey]?.validationMessage}</p>}
+                            helperText={showError && fields[fieldKey]?.validationMessage}
+                            InputProps={{ type: fields[fieldKey].type }}
+                        />
                     </td>
                 </tr>
             );
