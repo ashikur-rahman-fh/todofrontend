@@ -25,7 +25,7 @@ const LoginForm = (props) => {
         const { data, status } = await sendLoginRequest(payload);
 
         if (status === 200) {
-            window.sessionStorage.setItem('auth-token', data.token);
+            window.localStorage.setItem('auth-token', data.token);
 
             const response = await requestHelper.makeRequest(USER_INFO_REQUST_CONFIG.url, USER_INFO_REQUST_CONFIG.method, null, { 'auth-token': data.token });
             setUser(response.data.user);

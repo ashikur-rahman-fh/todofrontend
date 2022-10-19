@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 export class RequestHelper {
     constructor() {
         this.headers = {
-            'auth-token': window.sessionStorage.getItem('auth-token'),
+            'auth-token': window.localStorage.getItem('auth-token'),
         }
     }
 
