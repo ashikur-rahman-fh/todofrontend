@@ -35,7 +35,7 @@ const Form = (props) => {
             const validationExp = fields[fieldKey]?.validation;
             let invalid = validationExp && !validationExp.test(currentValue) ? true : false;
 
-            const showError = currentValue && invalid;
+            const showError = currentValue && invalid ? true : false;
 
             return (
                 <tr key={fieldKey}>
@@ -49,7 +49,7 @@ const Form = (props) => {
                             name={fields[fieldKey].id}
                             value={currentValue}
                             onChange={handleFormDataChange}
-                            helperText={showError && fields[fieldKey]?.validationMessage}
+                            helperText={showError ? fields[fieldKey]?.validationMessage : ""}
                             InputProps={{ type: fields[fieldKey].type }}
                         />
                     </td>
