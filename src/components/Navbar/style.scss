@@ -19,4 +19,21 @@
             }
         }
     }
+
+}
+
+.option-user-menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .user-info-container {
+        display: flex;
+        gap: 5px;
+        color: $secondary-color;
+
+        .log-out-link {
+            text-decoration: none;
+        }
+    }
 }

@@ -7,7 +7,7 @@ const LoggedUser = (props) => {
     return (
         <section className="logged-in-page">
             <div className="goto-task-container">
-                <Link to={"/todo"}>Click! To see your tasks</Link>
+                <Link to={"/todos"}>Click! To see your tasks</Link>
             </div>
         </section>
     );
