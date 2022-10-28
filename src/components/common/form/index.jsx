@@ -41,7 +41,7 @@ const Form = (props) => {
                 <tr key={fieldKey}>
                     <td>
                         <TextField
-                            size="small"
+                            size={fields[fieldKey]?.size ? fields[fieldKey]?.size : "small" }
                             error={showError}
                             label={fields[fieldKey].label}
                             variant="outlined"
@@ -51,6 +51,9 @@ const Form = (props) => {
                             onChange={handleFormDataChange}
                             helperText={showError ? fields[fieldKey]?.validationMessage : ""}
                             InputProps={{ type: fields[fieldKey].type }}
+                            multiline={fields[fieldKey]?.multiline}
+                            minRows={fields[fieldKey]?.minRows}
+                            style={{ ...fields[fieldKey]?.style }}
                         />
                     </td>
                 </tr>
