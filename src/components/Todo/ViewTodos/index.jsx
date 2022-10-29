@@ -8,6 +8,7 @@ import SingleTodo from "./SingleTodo";
 
 import { TODO_REQUEST_CONFIG, TITLE, CREATE_TASK_TEXT } from "./constants";
 import "./style.scss";
+import TodoListItem from "./TodoListItem";
 
 const ViewTodos = (props) => {
     const [todos, setTodos] = useState(null);
@@ -37,7 +38,11 @@ const ViewTodos = (props) => {
 
         return todos?.todos?.map((todo, todoIndex) => {
             return (
-                <li className="todo" onClick={() => setSelectedTodoIndex(todoIndex)} key={todo._id}>{todo?.title}</li>
+                <TodoListItem
+                    key={todo._id}
+                    text={todo.title}
+                    onClick={() => setSelectedTodoIndex(todoIndex)}
+                />
             );
         });
     };
