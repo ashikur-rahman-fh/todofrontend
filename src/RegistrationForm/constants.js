@@ -33,7 +33,8 @@ export const FIELDS = {
         id: 'password2',
         type: 'password',
         validation: new RegExp('.'),
-        validationMessage: 'Password can not be empty',
+        validationMessage: 'Password did not match',
+        valueCheck: 'password',
     }
 };
 

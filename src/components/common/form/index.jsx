@@ -13,8 +13,14 @@ const Form = (props) => {
         for (let fieldKey in fields) {
             const currentValue = formData?.[fields[fieldKey].id] ? formData[fields[fieldKey].id] : "";
             const validationExp = fields[fieldKey]?.validation;
+            const valueCheckField = fields[fieldKey]?.valueCheck;
 
+            
             if (validationExp && !validationExp.test(currentValue)) {
+                return true;
+            }
+
+            if (valueCheckField && formData?.[fieldKey] !== formData[valueCheckField]) {
                 return true;
             }
         }
@@ -34,8 +40,12 @@ const Form = (props) => {
 
             const validationExp = fields[fieldKey]?.validation;
             let invalid = validationExp && !validationExp.test(currentValue) ? true : false;
+            
+            const valueCheckFieldKey = fields[fieldKey]?.valueCheck;
+            const fieldValue = valueCheckFieldKey ? formData?.[valueCheckFieldKey] : null;
+            const unmatchedValue = fieldValue && fieldValue !== formData?.[fieldKey];
 
-            const showError = currentValue && invalid ? true : false;
+            const showError = (currentValue && invalid) || (currentValue && unmatchedValue) ? true : false;
 
             return (
                 <tr key={fieldKey}>
