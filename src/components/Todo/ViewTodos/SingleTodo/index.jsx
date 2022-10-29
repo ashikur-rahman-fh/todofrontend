@@ -10,8 +10,7 @@ const SingleTodo = (props) => {
 
     return (
         <div>
-            <h1>Your todo</h1>
-            <h2>{todo?.title}</h2>
+            <h2 style={{ textAlign: 'center' }}>{todo?.title}</h2>
             <p>{todo?.description}</p>
         </div>
     );

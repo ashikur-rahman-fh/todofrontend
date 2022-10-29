@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { requestHelper } from "../../../utility/helper";
-import { CircularProgress } from "@mui/material";
+import { Paper, Skeleton } from "@mui/material";
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 import SingleTodo from "./SingleTodo";
 
-import { TODO_REQUEST_CONFIG } from "./constants";
+import { TODO_REQUEST_CONFIG, TITLE, CREATE_TASK_TEXT } from "./constants";
 import "./style.scss";
 
 const ViewTodos = (props) => {
@@ -27,7 +28,11 @@ const ViewTodos = (props) => {
 
     const renderTodos = () => {
         if (loadingTodo) {
-            return <CircularProgress />;
+            return [1, 2, 3, 4].map((item) => {
+                return (
+                    <li key={item.toString()}><Skeleton animation="wave" /></li>
+                );
+            });
         }
 
         return todos?.todos?.map((todo, todoIndex) => {
@@ -45,15 +50,22 @@ const ViewTodos = (props) => {
         <section className="todos-container outmost-container">
             <div className="todo-list-view-todo-container">
                 <div className="todo-list-container">
-                    <h1>Here is my todos</h1>
-                    <Link to={'/todos/create'}> Create your todo</Link>
+                    <div className="title-create-todo-container">
+                        <h1>{TITLE}</h1>
+                        <Link to={'/todos/create'}>
+                            <div className="create-todo-container">
+                                {CREATE_TASK_TEXT}
+                                <AddCircleTwoToneIcon />
+                            </div>
+                        </Link>
+                    </div>
                     <ul className="todo-list">
                         {renderTodos()}
                     </ul>
                 </div>
-                <div className="view-todo-cotainer">
+                <Paper sx={{ p: 2 }} elevation={2} className="view-todo-cotainer">
                     <SingleTodo todo={selectedTodo} />
-                </div>
+                </Paper>
             </div>
         </section>
     );

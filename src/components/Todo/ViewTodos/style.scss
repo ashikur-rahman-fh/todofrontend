@@ -1,6 +1,8 @@
+@import "../../../assets/style/base";
+
 .todo-list-view-todo-container {
     display: flex;
-
+    gap: 40px;
     .todo-list-container {
         flex: 1;
     }
@@ -8,4 +10,38 @@
     .view-todo-cotainer {
         flex: 1;
     }
+
+    .todo-list {
+        list-style: none;
+        padding-inline-start: unset;
+
+        li {
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 18px;
+
+            background-image: repeating-linear-gradient(to right, $primary-color-light, $secondary-color-light);
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+    }
+
+    .title-create-todo-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 20px;
+
+        a {
+            text-decoration: none;
+        }
+        
+        .create-todo-container {
+            display: flex;
+            align-items: center;
+            color: $primary-color;
+            gap: 10px;
+        }
+    }
+
 }
