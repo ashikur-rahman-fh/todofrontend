@@ -37,7 +37,7 @@ const ViewTodos = (props) => {
 
         return todos?.todos?.map((todo, todoIndex) => {
             return (
-                <li onClick={() => setSelectedTodoIndex(todoIndex)} key={todo._id}>{todo?.title}</li>
+                <li className="todo" onClick={() => setSelectedTodoIndex(todoIndex)} key={todo._id}>{todo?.title}</li>
             );
         });
     };
