@@ -69,7 +69,7 @@ const ViewTodos = (props) => {
                     </ul>
                 </div>
                 <Paper sx={{ p: 2 }} elevation={2} className="view-todo-cotainer">
-                    <SingleTodo todo={selectedTodo} />
+                    <SingleTodo todo={selectedTodo} loading={loadingTodo} />
                 </Paper>
             </div>
         </section>
