@@ -4,6 +4,7 @@
     .menu-container {
         display: flex;
         gap: 30px;
+        padding-inline-start: unset;
         li {
             list-style: none;
             text-transform: uppercase;
