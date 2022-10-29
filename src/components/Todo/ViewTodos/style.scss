@@ -1,0 +1,11 @@
+.todo-list-view-todo-container {
+    display: flex;
+
+    .todo-list-container {
+        flex: 1;
+    }
+
+    .view-todo-cotainer {
+        flex: 1;
+    }
+}

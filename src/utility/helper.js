@@ -9,7 +9,14 @@ export class RequestHelper {
         }
     }
 
+    updateHeader = () => {
+        this.headers = {
+            'auth-token': window.localStorage.getItem('auth-token'),
+        }
+    };
+
     makeRequest = async (url, method, data, headers = undefined) => {
+        this.updateHeader();
         let response = null;
         try {
             response = await axios({

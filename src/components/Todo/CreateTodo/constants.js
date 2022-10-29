@@ -12,7 +12,7 @@ export const FIELDS = {
         label: 'Description',
         id: 'description',
         type: 'password',
-        validation: new RegExp('....'),
+        validation: new RegExp('.....'),
         multiline: true,
         minRows: 6,
         size: 'large',
