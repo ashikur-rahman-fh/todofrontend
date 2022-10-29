@@ -32,7 +32,7 @@ const Navbar = (props) => {
             <div className="user-info-container">
                 <span>{user?.name}</span>
                 {user?.name && <Divider orientation="vertical" flexItem />}
-                <span><Link className="log-out-link" href="/" onClick={handleLogout}>sign out</Link></span>
+                <span><Link className="log-out-link" to="/" onClick={handleLogout}>sign out</Link></span>
             </div>
         )
     };
