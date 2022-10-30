@@ -40,7 +40,7 @@ const ViewTodos = (props) => {
             return (
                 <TodoListItem
                     key={todo._id}
-                    text={todo.title}
+                    todo={todo}
                     onClick={() => setSelectedTodoIndex(todoIndex)}
                 />
             );

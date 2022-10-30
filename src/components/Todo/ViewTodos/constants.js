@@ -4,3 +4,8 @@ export const TODO_REQUEST_CONFIG = {
     url: `api/todos`,
     method: `GET`,
 };
+
+export const TODO_STATUS = {
+    PENDING: 'pending',
+    COMPLETED: 'completed',
+};
