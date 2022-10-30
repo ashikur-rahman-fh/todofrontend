@@ -14,8 +14,8 @@ const LoginForm = (props) => {
 
     const sendLoginRequest = async (payload) => {
         const response = await requestHelper.makeRequest(LOGIN_REQUEST_CONFIG.url, LOGIN_REQUEST_CONFIG.method, {
-            username: payload.username,
-            password: payload.password,
+            username: payload?.username,
+            password: payload?.password,
         });
 
         return response;

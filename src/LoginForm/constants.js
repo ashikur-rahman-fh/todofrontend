@@ -4,13 +4,11 @@ export const FIELDS = {
         id: 'username',
         type: 'text',
         autoFocus: true,
-        validation: new RegExp('.'),
     },
     password: {
         label: 'Password',
         id: 'password',
         type: 'password',
-        validation: new RegExp('.'),
     },
 };
 
