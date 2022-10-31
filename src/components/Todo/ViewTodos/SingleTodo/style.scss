@@ -1,0 +1,19 @@
+.single-todo-container {
+    display: grid;
+    gap: 20px;
+
+    .title-container {
+        display: flex;
+        justify-content: center;
+
+        .todo-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,5 +1,6 @@
 export const TITLE = "List of your tasks";
 export const CREATE_TASK_TEXT = 'Create task';
+export const MIN_TODO_DESCRIPTION_LENGTH = 5;
 export const TODO_REQUEST_CONFIG = {
     url: `api/todos`,
     method: `GET`,
