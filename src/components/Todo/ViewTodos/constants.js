@@ -13,6 +13,7 @@ export const TODO_STATUS = {
 export const TODO_ACTION_TYPE = {
     LOAD_TODO: 'LOAD_TODO',
     MODIFY_TODO: 'MODIFY_TODO',
+    DELETE_TODO: 'DELETE_TODO',
 };
 
 export const TODO_REDUCER_INITIAL_STATE = {
@@ -38,6 +39,12 @@ export const todoReducer = (state, action) => {
 
                     return todo;
                 }),
+            }
+        case TODO_ACTION_TYPE.DELETE_TODO:
+            return {
+                ...state,
+                count: state.count - 1,
+                todos: state.todos.filter((todo) => todo._id !== action.payload._id),
             }
         default:
             throw new Error("Does not match any action type!");

@@ -18,15 +18,14 @@ const TodoListItem = (props) => {
 
     const makeTodoUpdateRequest = async (newTodo) => {
         await requestHelper.makeRequest(UPDATE_REQUST_CONFIG.ULR(todo._id), UPDATE_REQUST_CONFIG.METHOD, {
-            ...todo,
-            status: TODO_STATUS.COMPLETED,
+            ...newTodo,
         });
     };
 
     const markTodoAsDone = async (event) => {
         event.stopPropagation();
         setMarkAsDoneLoading(true);
-        await makeTodoUpdateRequest();
+        await makeTodoUpdateRequest({ ...todo, status: TODO_STATUS.COMPLETED });
 
         dispatch({ type: TODO_ACTION_TYPE.MODIFY_TODO, payload: {
             ...todo,
@@ -36,13 +35,30 @@ const TodoListItem = (props) => {
         setMarkAsDoneLoading(false);
     };
 
+    const deleteTodo = async (event) => {
+        event.stopPropagation();
+        setMarkAsDoneLoading(true);
+
+        await makeTodoUpdateRequest({ ...todo, deleted: true });
+
+        dispatch({ type: TODO_ACTION_TYPE.DELETE_TODO, payload: {
+            ...todo
+        }});
+
+        setMarkAsDoneLoading(false);
+    }
+
     const displayActionButtons = () => {
+        if (markAsDoneLoading) {
+            return <CircularProgress size={22} className="todo-update-spinner"/>;
+        }
+        
         return (
             <span>
                 {markAsDoneLoading ? <CircularProgress size={22} className="todo-update-spinner"/> : (
                     todo.status !== TODO_STATUS.COMPLETED && <OfflinePinTwoToneIcon onClick={markTodoAsDone} className="done-button" />
                 )}
-                <DeleteTwoToneIcon className="delete-button" />
+                <DeleteTwoToneIcon onClick={deleteTodo} className="delete-button" />
             </span>
         );
     };
