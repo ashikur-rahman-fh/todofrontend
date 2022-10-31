@@ -24,6 +24,11 @@
     .done-button {
         color: green;
     }
+
+    .restore-button {
+        color: $color-warning;
+    }
+
     .todo-update-spinner {
         color: $primary-color;
     }

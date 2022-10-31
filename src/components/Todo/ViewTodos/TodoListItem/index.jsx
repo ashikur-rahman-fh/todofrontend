@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { CircularProgress } from "@mui/material";
 import OfflinePinTwoToneIcon from '@mui/icons-material/OfflinePinTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
+import RestoreTwoToneIcon from '@mui/icons-material/RestoreTwoTone';
 import { TodoContext } from "../../../../context";
 
 import { requestHelper } from "../../../../utility/helper";
@@ -35,6 +36,19 @@ const TodoListItem = (props) => {
         setMarkAsDoneLoading(false);
     };
 
+    const markTodoAsUndone = async (event) => {
+        event.stopPropagation();
+        setMarkAsDoneLoading(true);
+        await makeTodoUpdateRequest({ ...todo, status: TODO_STATUS.PENDING });
+
+        dispatch({ type: TODO_ACTION_TYPE.MODIFY_TODO, payload: {
+            ...todo,
+            status: TODO_STATUS.PENDING,
+        }});
+
+        setMarkAsDoneLoading(false);
+    };
+
     const deleteTodo = async (event) => {
         event.stopPropagation();
         setMarkAsDoneLoading(true);
@@ -42,7 +56,7 @@ const TodoListItem = (props) => {
         await makeTodoUpdateRequest({ ...todo, deleted: true });
 
         dispatch({ type: TODO_ACTION_TYPE.DELETE_TODO, payload: {
-            ...todo
+            ...todo,
         }});
 
         setMarkAsDoneLoading(false);
@@ -52,12 +66,13 @@ const TodoListItem = (props) => {
         if (markAsDoneLoading) {
             return <CircularProgress size={22} className="todo-update-spinner"/>;
         }
-        
+
         return (
             <span>
-                {markAsDoneLoading ? <CircularProgress size={22} className="todo-update-spinner"/> : (
-                    todo.status !== TODO_STATUS.COMPLETED && <OfflinePinTwoToneIcon onClick={markTodoAsDone} className="done-button" />
-                )}
+                {todo.status !== TODO_STATUS.COMPLETED ? 
+                    <OfflinePinTwoToneIcon onClick={markTodoAsDone} className="done-button" /> : 
+                    <RestoreTwoToneIcon onClick={markTodoAsUndone} className="restore-button"/>
+                }
                 <DeleteTwoToneIcon onClick={deleteTodo} className="delete-button" />
             </span>
         );
