@@ -32,20 +32,21 @@ const TodoListItem = (props) => {
     const displayActionButtons = () => {
         return (
             <span>
-                {markAsDoneLoading ? <CircularProgress size={22} className="todo-update-spinner"/> : <OfflinePinTwoToneIcon onClick={markTodoAsDone} className="done-button" />}
+                {markAsDoneLoading ? <CircularProgress size={22} className="todo-update-spinner"/> : (
+                    todo.status !== TODO_STATUS.COMPLETED && <OfflinePinTwoToneIcon onClick={markTodoAsDone} className="done-button" />
+                )}
                 <DeleteTwoToneIcon className="delete-button" />
             </span>
         );
     };
-
-    console.log(state);
     
     return (
         <li
-            className="todo-item"
+            className={`todo-item ${todo?.status}`}
             onClick={onClick}
             onMouseOver={() => setDisplayActions(true)}
             onMouseLeave={() => setDisplayActions(false)}
+            aria-label={todo?.status}
         >
             {todo?.title}
             {displayActions && displayActionButtons()}
