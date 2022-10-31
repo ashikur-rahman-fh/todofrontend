@@ -28,6 +28,17 @@ export const todoReducer = (state, action) => {
                 todos: action.payload?.todos,
                 count: action.payload?.count,
             }
+        case TODO_ACTION_TYPE.MODIFY_TODO:
+            return {
+                ...state,
+                todos: state.todos.map((todo) => {
+                    if (todo._id === action.payload._id) {
+                        return action.payload;
+                    }
+
+                    return todo;
+                }),
+            }
         default:
             throw new Error("Does not match any action type!");
     }

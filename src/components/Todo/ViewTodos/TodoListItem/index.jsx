@@ -5,13 +5,13 @@ import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import { TodoContext } from "../../../../context";
 
 import { requestHelper } from "../../../../utility/helper";
-import { TODO_STATUS } from "../constants";
+import { TODO_ACTION_TYPE, TODO_STATUS } from "../constants";
 import { UPDATE_REQUST_CONFIG } from "./constants";
 
 import "./style.scss";
 
 const TodoListItem = (props) => {
-    const { state } = useContext(TodoContext)
+    const { dispatch } = useContext(TodoContext);
     const { todo, onClick } = props;
     const [displayActions, setDisplayActions] = useState(false);
     const [markAsDoneLoading, setMarkAsDoneLoading] = useState(false);
@@ -26,6 +26,12 @@ const TodoListItem = (props) => {
     const markTodoAsDone = async (props) => {
         setMarkAsDoneLoading(true);
         await makeTodoUpdateRequest();
+
+        dispatch({ type: TODO_ACTION_TYPE.MODIFY_TODO, payload: {
+            ...todo,
+            status: TODO_STATUS.COMPLETED,
+        }});
+
         setMarkAsDoneLoading(false);
     };
 
