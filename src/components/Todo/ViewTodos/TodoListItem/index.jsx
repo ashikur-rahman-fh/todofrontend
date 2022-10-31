@@ -23,7 +23,8 @@ const TodoListItem = (props) => {
         });
     };
 
-    const markTodoAsDone = async (props) => {
+    const markTodoAsDone = async (event) => {
+        event.stopPropagation();
         setMarkAsDoneLoading(true);
         await makeTodoUpdateRequest();
 
