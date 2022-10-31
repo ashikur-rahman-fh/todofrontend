@@ -1,8 +1,8 @@
 @import "../../../../assets/style/base";
 
 .todo-item[aria-label="completed"] {
-    background-image: linear-gradient(to right, $disabled-color, $color-white);
-    color: $text-disabled-color;
+    text-decoration: line-through;
+    text-decoration-color: red;
 }
 
 .todo-item {
