@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { CircularProgress } from "@mui/material";
 import OfflinePinTwoToneIcon from '@mui/icons-material/OfflinePinTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
+import { TodoContext } from "../../../../context";
 
 import { requestHelper } from "../../../../utility/helper";
 import { TODO_STATUS } from "../constants";
@@ -10,6 +11,7 @@ import { UPDATE_REQUST_CONFIG } from "./constants";
 import "./style.scss";
 
 const TodoListItem = (props) => {
+    const { state } = useContext(TodoContext)
     const { todo, onClick } = props;
     const [displayActions, setDisplayActions] = useState(false);
     const [markAsDoneLoading, setMarkAsDoneLoading] = useState(false);
@@ -35,6 +37,8 @@ const TodoListItem = (props) => {
             </span>
         );
     };
+
+    console.log(state);
     
     return (
         <li
