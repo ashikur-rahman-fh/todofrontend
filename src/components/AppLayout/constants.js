@@ -1,1 +1,1 @@
-export const TOAST_MESSAGE_DURATION = 1200;
+export const TOAST_MESSAGE_DURATION = 1700;
