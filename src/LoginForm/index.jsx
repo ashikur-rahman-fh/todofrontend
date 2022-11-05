@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { requestHelper } from "../utility/helper";
 import Form from "../components/common/form";
 import { UserContext } from "../context";
@@ -9,7 +9,9 @@ import { FIELDS, REGISTRATION_TEXT, LOGIN_REQUEST_CONFIG, MESSAGE } from "./cons
 import { REGISTRATION_ROUTE, USER_INFO_REQUST_CONFIG } from "../constants";
 
 import "./style.scss";
+import { MENU_OPTION } from "../components/Navbar/constants";
 const LoginForm = (props) => {
+    const navigate = useNavigate();
     const { setUser } = useContext(UserContext);
 
     const sendLoginRequest = async (payload) => {
@@ -30,7 +32,8 @@ const LoginForm = (props) => {
             const response = await requestHelper.makeRequest(USER_INFO_REQUST_CONFIG.url, USER_INFO_REQUST_CONFIG.method, null, { 'auth-token': data.token });
             setUser(response.data.user);
 
-            successMessage(MESSAGE.LOGIN.SUCCESS)
+            successMessage(MESSAGE.LOGIN.SUCCESS);
+            navigate(MENU_OPTION?.todos?.link);
         } else {
             errorMessage(MESSAGE.LOGIN.ERROR);
         }
