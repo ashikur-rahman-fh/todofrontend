@@ -14,6 +14,7 @@
     .todo-list {
         list-style: none;
         padding-inline-start: unset;
+        height: 200px;
 
         li {
             margin: 10px 0;
@@ -40,5 +41,20 @@
             gap: 10px;
         }
     }
+    .pagination-container {
+        display: flex;
+        justify-content: right;
+        margin-top: 30px;
 
+        .pagination-button {
+            border-radius: 100%;
+            aspect-ratio: 1 / 1;
+            padding: unset;
+            margin: unset;
+
+            .pagination-icon {
+                font-size: 30px;
+            }
+        }
+    }
 }

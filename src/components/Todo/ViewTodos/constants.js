@@ -2,7 +2,9 @@ export const TITLE = "List of your tasks";
 export const CREATE_TASK_TEXT = 'Create task';
 export const MIN_TODO_DESCRIPTION_LENGTH = 5;
 export const TODO_REQUEST_CONFIG = {
-    url: `api/todos`,
+    url: (page, pageSize) => {
+        return `api/todos?page=${page}&page_size=${pageSize}`;
+    },
     method: `GET`,
 };
 
@@ -51,3 +53,6 @@ export const todoReducer = (state, action) => {
             throw new Error("Does not match any action type!");
     }
 };
+
+export const PAGE_SIZE = 5;
+export const FIRST_PAGE_NUMBER = 1;
