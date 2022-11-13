@@ -44,7 +44,7 @@ const SingleTodo = (props) => {
     };
 
     const finishUpdate = async (event) => {
-        setReadOnlyMode(false);
+        setReadOnlyMode(true);
         await makeModifyRequest();
     }
 
