@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "../components/common/form";
 import { errorMessage, requestHelper } from "../utility/helper";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,10 @@ import "./style.scss";
 const RegistrationForm = (props) => {
     const navigate = useNavigate();
 
+    const [submittingForm, setSubmittingForm] = useState(false);
+
     const sendRegirationRequest = async (payload) => {
+        setSubmittingForm(true);
         const response = await requestHelper.makeRequest(REGISTRATION_REQUEST_CONFIG.url, REGISTRATION_REQUEST_CONFIG.method, {
             username: payload.username,
             password: payload.password,
@@ -28,6 +31,7 @@ const RegistrationForm = (props) => {
             errorMessage(MESSAGE.REGISRATION.ERROR);
             navigate(REGISTRATION_ROUTE);
         }
+        setSubmittingForm(false);
     };
 
     const handleRegisterClick = (data) => {
@@ -48,6 +52,7 @@ const RegistrationForm = (props) => {
             fields={FIELDS}
             onSubmit={handleRegisterClick}
             submitButtonText="Register"
+            loading={submittingForm}
         />
     );
 };

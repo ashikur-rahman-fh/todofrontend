@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { requestHelper } from "../utility/helper";
 import Form from "../components/common/form";
@@ -13,6 +13,7 @@ import { MENU_OPTION } from "../components/Navbar/constants";
 const LoginForm = (props) => {
     const navigate = useNavigate();
     const { setUser } = useContext(UserContext);
+    const [submittingForm, setSubmittingForm] = useState(false)
 
     const sendLoginRequest = async (payload) => {
         const response = await requestHelper.makeRequest(LOGIN_REQUEST_CONFIG.url, LOGIN_REQUEST_CONFIG.method, {
@@ -24,6 +25,8 @@ const LoginForm = (props) => {
     };
 
     const handleLoginClick = async (payload) => {
+        setSubmittingForm(true);
+
         const { data, status } = await sendLoginRequest(payload);
 
         if (status === 200) {
@@ -37,6 +40,8 @@ const LoginForm = (props) => {
         } else {
             errorMessage(MESSAGE.LOGIN.ERROR);
         }
+
+        setSubmittingForm(false);
     }
 
     const FooterOption = <Link className="registration-link" to={REGISTRATION_ROUTE}>{REGISTRATION_TEXT}</Link>
@@ -57,6 +62,7 @@ const LoginForm = (props) => {
             onSubmit={handleLoginClick}
             submitButtonText="Enter"
             footerOption={FooterOption}
+            loading={submittingForm}
         />
     );
 };
