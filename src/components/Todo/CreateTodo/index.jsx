@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "../../common/form";
 
@@ -7,6 +7,8 @@ import { CREATE_TODO_REQ_CONFIG, FIELDS, TITLE } from "./constants";
 
 const CreateTodo = (props) => {
     const navigate = useNavigate();
+    const [submittingForm, setSubmittingForm] = useState(false);
+
     const getTitle = () => {
         return (
             <div className="title">
@@ -17,6 +19,8 @@ const CreateTodo = (props) => {
     };
 
     const setCreateTodoRequest = async (todo) => {
+        setSubmittingForm(true);
+
         const response = await requestHelper.makeRequest(CREATE_TODO_REQ_CONFIG.url, CREATE_TODO_REQ_CONFIG.method, {
             title: todo.title,
             description: todo.description,
@@ -28,6 +32,8 @@ const CreateTodo = (props) => {
         } else {
             errorMessage(`Can not create your todo! Please try again.`);
         }
+
+        setSubmittingForm(false);
     };
 
     const handleSubmit = (data) => {
@@ -41,6 +47,7 @@ const CreateTodo = (props) => {
                     title={getTitle()}
                     fields={FIELDS}
                     onSubmit={handleSubmit}
+                    loading={submittingForm}
                 />
             </div>
         </section>
