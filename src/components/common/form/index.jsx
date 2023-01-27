@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from "react";
-import { TextField } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
 import "./style.scss";
 
 const Form = (props) => {
-    const { title, fields, onSubmit, submitButtonText, footerOption } = props;
+    const { title, fields, onSubmit, submitButtonText, footerOption, loading } = props;
     const [formData, setFormData] = useState(null);
 
     const invalidForm = useMemo(() => {
@@ -75,6 +75,26 @@ const Form = (props) => {
         onSubmit(formData);
     };
 
+    const renderSumbitButton = () => {
+        return (
+            <span className={`submit-button-container ${invalidForm ? 'button-container-disabled' : ''}`}>
+                <Link
+                    className={`submit-button ${invalidForm ? 'disabled' : ''}`}
+                    type="button"
+                    onClick={handleSubmitButtonClick}
+                >
+                    {submitButtonText}
+                </Link>
+            </span>
+        );
+    };
+
+    const renderFormLoadingSpinner = () => {
+        return (
+            <CircularProgress size={28} className="form-loading-spinner"/>
+        );
+    };
+
     return (
         <form className="general-form">
             <div className="form-cotainer">
@@ -90,15 +110,7 @@ const Form = (props) => {
 
                 <div className="form-footer">
                     {footerOption}
-                    <span className={`submit-button-container ${invalidForm ? 'button-container-disabled' : ''}`}>
-                        <Link
-                            className={`submit-button ${invalidForm ? 'disabled' : ''}`}
-                            type="button"
-                            onClick={handleSubmitButtonClick}
-                        >
-                            {submitButtonText}
-                        </Link>
-                    </span>
+                    {loading ? renderFormLoadingSpinner() : renderSumbitButton()}
                 </div>
             </div>
         </form>
@@ -109,6 +121,7 @@ Form.defaultProps = {
     submitButtonText: "Enter",
     footerOption: null,
     redirectRoute: "/",
+    loading: false,
 };
 
 Form.propTypes = {
